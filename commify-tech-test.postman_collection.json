@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "f27c22d7-e97d-43ca-b54b-3c98a93745df",
+		"name": "commify-tech-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21271977"
+	},
+	"item": [
+		{
+			"name": "CalculateTax",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"grossAnnualSalary\":\"999999999999999999\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tax/v1/calculate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tax",
+						"v1",
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTaxBand",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"bandName\": \"TaxBandA\",\r\n  \"lowerSalaryRange\": 0,\r\n  \"upperSalaryRange\": 1000,\r\n  \"taxRate\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tax/taxband/v1/create-taxband",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tax",
+						"taxband",
+						"v1",
+						"create-taxband"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

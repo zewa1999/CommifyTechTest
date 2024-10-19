@@ -1,0 +1,50 @@
+networks:
+   commify-network:
+
+services:
+  commify.database:
+    image: postgres:latest
+    container_name: commify-database
+    environment:
+      POSTGRES_USER: commify_admin
+      POSTGRES_PASSWORD: Secret123@
+      POSTGRES_DB: commify-db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./.containers/taxcalculator.database:/var/lib/postgresql/data
+    networks:
+      - commify-network
+
+  commify.seq:
+    container_name: commify-seq
+    image: datalust/seq:latest
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - "5341:80"
+    volumes:
+      - ./.containers/seq:/data
+    networks:
+      - commify-network
+
+  commify.api:
+    container_name: commify-api
+    image: ${DOCKER_REGISTRY-}taxcalculatorcommify
+    build:
+      context: Tax.Calculator.Commify
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+      - 8081:8081
+    environment:
+      - DB_HOST=commify-database
+      - DB_PORT=5432
+      - DB_NAME=commify-db
+      - DB_USER=commify_admin
+      - DB_PASSWORD=Secret123@
+      - SEQ_API_TOKEN=H8bsdO5s2R4dIkmm2Fnj
+      - SEQ_API_ENDPOINT =http://commify-seq:80/ingest/otlp/v1/logs 
+    networks:
+      - commify-network
+

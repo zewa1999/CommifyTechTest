@@ -68,7 +68,7 @@ LastUpdatedAt(timestamp with time zone - UTC)
 ### Exception handling
 
 - The WebApi presents exception handling. It has a middleware that catches any exception, logs it and sends a 500 Internal Server Error.
-- The errors that can happen in the app and are treated are returned as a Bad Request using the ProblemDetails standard.
+- The errors that can happen in the app and are treated are returned as a Bad Request if there is a Validation problem using the ProblemDetails standard.
 - The WebApi has the functionality to create a TaxBand. I didn't took the time to also make Update/Delete functionality(in the pdf it was not stated that I should also treat the create/update/delete of the TaxBands at all)
 - The UI saves in the console the error if there is any
 
